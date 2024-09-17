@@ -1,0 +1,25 @@
+.typewriter {
+    display: inline-block;
+}
+
+.typewriter-content {
+    display: block;
+}
+
+.typewriter .typewriter-content {
+    border-right: 2.5px solid #5A9BFF;
+    margin: 0 auto;
+    letter-spacing: 0.15em;
+    animation: blink 0.75s step-end infinite;
+}
+
+@keyframes blink {
+    from,
+    to {
+        border-color: transparent
+    }
+
+    50% {
+        border-color: #5A9BFF;
+    }
+}
