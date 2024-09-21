@@ -54,6 +54,7 @@
 /* Button */
 
 .c-btn-blue {
+    border: none;
     background-color: var(--blue2);
     color: var(--white);
     transition: 0.5s;
@@ -62,4 +63,15 @@
 .c-btn-blue:hover {
     background-color: var(--blue3);
     color: var(--white);
+}
+
+.c-btn-outline-blue {
+    border: none;
+    color: var(--black);
+    background-color: transparent;
+    transition: 0.5s;
+}
+
+.c-btn-outline-blue:hover {
+    color: var(--blue2);
 }

@@ -8,11 +8,12 @@
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="src/css/common-styles.css">
   <link rel="stylesheet" href="src/css/common-animations.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <title>Short Link</title>
 </head>
 
 <body class="c-text-black c-bg-white">
-  <header class="mb-5 c-bg-blue-1">
+  <header class="c-bg-blue-1" style="margin-bottom: 100px;">
     <!-- Barra de navegação -->
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
@@ -44,25 +45,42 @@
   <main class="container-md p-2">
     <!-- Form para encurtar link -->
     <form id="short-link-form">
-      <div class="mb-4 d-flex flex-column flex-nowrap align-items-center">
+      <div class="mb-5 d-flex flex-column flex-nowrap align-items-center">
         <h2 class="fs-2">Encurte seu link aqui</h2>
         <div class="typewriter align-self-center">
-          <span class="c-text-blue-2 fs-4 typewriter-content">Gere um link curto;Crie QR code;Links seguros</span>
+          <span class="c-text-blue-2 fs-4 typewriter-content text-center">Gere um link curto;Crie QR code;Links
+            seguros</span>
         </div>
       </div>
       <div class="input-group">
         <div class="input-group-text gap-2">
-          <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-          <img src="public/qr-code.png" alt="">
+          <input class="form-check-input mt-0" type="checkbox" id="short-link-qrcode"
+            aria-label="Checkbox for following text input">
+          <img src="public/qr-code.png" alt="QR code input">
         </div>
-        <input type="text" class="form-control w-75" aria-label="Text input with checkbox" placeholder="Cole seu link aqui">
-        <button class="btn c-btn-blue d-none d-md-block" type="button" id="">Encurtar</button>
+        <input type="text" class="form-control" id="short-link-text" aria-label="Text input with checkbox"
+          placeholder="Cole seu link aqui">
+        <button class="btn c-btn-blue d-none d-md-block" id="">Encurtar</button>
       </div>
-      <button class="btn c-btn-blue d-md-none d-block mt-2 ms-auto" type="button" id="">Encurtar</button>
+      <button class="btn c-btn-blue d-md-none d-block mt-2 ms-auto">Encurtar</button>
     </form>
-  </main>
+    <!-- Resposta do form -->
+    <section class="d-flex flex-column align-items-center mt-4 p-4">
+      <div class="spinner-grow c-text-blue-3 d-none" role="status" id="loader">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div id="response-container" class="d-none">
+        <img
+          src=""
+          id="qr-code" class="rounded-4">
+        <div class="mt-1">
+          <p readonly value="http://localhost:8080/asdas" class="w-100 d-inline" id="short-link-area"></p>
+          <button class="c-btn-outline-blue" id="copy-button"><i class="bi bi-clipboard"></i></button>
+        </div>
+      </div>
+    </section>
 
-  <footer></footer>
+  </main>
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
