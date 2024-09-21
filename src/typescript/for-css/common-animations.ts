@@ -18,6 +18,7 @@ class Writer {
     type = () => {
         if (this.phrases == null) return
         const currentPhrase: string = this.phrases[this.currentPhraseIndex]
+        // Deletando frases
         if (this.isDeleting) {
             this.element.textContent = currentPhrase.substring(0, this.currentLetterIndex - 1);
             this.currentLetterIndex--;
@@ -29,7 +30,9 @@ class Writer {
             } else {
                 setTimeout(() => this.type(), this.deleteSpeed)
             }
-        } else {
+        } 
+        // Escrevendo frases
+        else {
             this.element.textContent = currentPhrase.substring(0, this.currentLetterIndex + 1)
             this.currentLetterIndex++
     
@@ -44,10 +47,15 @@ class Writer {
 }
 
 typewriter.forEach((element) => {
+    // Obtem as frases desejadas
     const phrases = element.textContent?.split(";")
+    // Remove as frases e deixa apenas um espaço para calcular da tag
+    element.textContent = "."
     element.style.minHeight = element.clientHeight.toString() + "px"
+
     element.textContent = ""
 
+    // Invoca o controlador para ficar digitando as frases
     if (phrases != null)
         new Writer(phrases, element).type()
 })

@@ -11,6 +11,7 @@
     margin: 0 auto;
     letter-spacing: 0.15em;
     animation: blink 0.75s step-end infinite;
+    word-break: break-all;
 }
 
 @keyframes blink {
