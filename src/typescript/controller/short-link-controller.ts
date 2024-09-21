@@ -6,6 +6,8 @@ const shortLinkArea = document.getElementById("short-link-area") as HTMLParagrap
 const copyButton = document.getElementById("copy-button") as HTMLButtonElement
 const responseContainer = document.getElementById("response-container") as HTMLDivElement
 const loader = document.getElementById("loader") as HTMLSpanElement
+// @ts-ignore
+const errorModal = new bootstrap.Modal(document.getElementById('error-modal'))
 
 type PostShortURLResponse = {
     id: string,
@@ -35,43 +37,50 @@ form.addEventListener("submit", async (e) => {
     // Habilita o loader
     loader.classList.remove("d-none")
 
-    const data: PostShortURLResponse | undefined = await fetch(`http://localhost:8080`, {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ original_url: text.value })
-    }).then(response => response.json()).catch(error => console.log(error))
+    try {
+        const data: PostShortURLResponse | undefined = await fetch(`http://localhost:8080`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ original_url: text.value })
+        }).then(response => response.json()).catch(error => console.log(error))
 
-    if (data == undefined) {
+        if (data == undefined) {
+            // Remove o loader
+            loader.classList.add("d-none")
+            throw new Error("data not found")
+        }
+
+        // Habilita o container com as tags para resposta
+        responseContainer.classList.remove("d-none");
+
+        // Caso o usuário tenha pedido um qr code
+        if (QRCodeInput.checked) {
+            const URLParts = data.shortURL.split("/")
+            const URLId = URLParts[URLParts.length - 1]
+            const QRCodeData: GetQRcodeResponse | undefined = await fetch(`http://localhost:8080/qrcode/${URLId}`).then(response => response.json()).catch(error => console.log(error))
+
+            if (QRCodeData == undefined) {
+                // Remove o loader
+                loader.classList.add("d-none")
+                throw new Error("data not found")
+            }
+            console.log(QRCodeData.base64Image)
+            // Decodifica a base64 para exibir o QR code
+            QRCodeImage.src = `data:image/png;base64,${QRCodeData.base64Image}`
+        }
+
+        // Adiciona a URL curta
+        shortLinkArea.textContent = data.shortURL
+        // Deixa o input vazio
+        text.value = ""
+
         // Remove o loader
         loader.classList.add("d-none")
-
-        return
+    } catch (error) {
+        errorModal.show()
     }
-
-    // Habilita o container com as tags para resposta
-    responseContainer.classList.remove("d-none");
-
-    // Caso o usuário tenha pedido um qr code
-    if (QRCodeInput.checked) {
-        const URLParts = data.shortURL.split("/")
-        const URLId = URLParts[URLParts.length - 1]
-        const QRCodeData: GetQRcodeResponse | undefined = await fetch(`http://localhost:8080/qrcode/${URLId}`).then(response => response.json()).catch(error => console.log(error))
-
-        if (QRCodeData == undefined) return
-        console.log(QRCodeData.base64Image)
-        // Decodifica a base64 para exibir o QR code
-        QRCodeImage.src = `data:image/png;base64,${QRCodeData.base64Image}`
-    }
-
-    // Adiciona a URL curta
-    shortLinkArea.textContent = data.shortURL
-    // Deixa o input vazio
-    text.value = ""
-
-    // Remove o loader
-    loader.classList.add("d-none")
 })
 
 

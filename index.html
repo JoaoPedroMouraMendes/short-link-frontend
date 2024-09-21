@@ -70,9 +70,7 @@
         <span class="visually-hidden">Loading...</span>
       </div>
       <div id="response-container" class="d-none">
-        <img
-          src=""
-          id="qr-code" class="rounded-4">
+        <img src="" id="qr-code" class="rounded-4">
         <div class="mt-1">
           <p readonly value="http://localhost:8080/asdas" class="w-100 d-inline" id="short-link-area"></p>
           <button class="c-btn-outline-blue" id="copy-button"><i class="bi bi-clipboard"></i></button>
@@ -80,6 +78,23 @@
       </div>
     </section>
 
+    <!-- Modal -->
+    <div class="modal fade" id="error-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Ops!</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Ocorreu um erro com nosso servidor! Por favor, tem novamente mais tarde.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 </body>
 
