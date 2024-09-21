@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+
+  <title>Short Link</title>
+  <script type="module" crossorigin src="./assets/index-DG4URkSB.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-CNbIbwrW.css">
+</head>
+
+<body class="c-text-black c-bg-white">
+  <header class="c-bg-blue-1" style="margin-bottom: 100px;">
+    <!-- Barra de navegação -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand fst-italic fs-2" href="index.html">Short Link</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+          aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pricing</a>
+            </li>
+          </ul>
+          <span class="navbar-text d-none d-lg-block">
+            Encurte seus links de forma simples
+          </span>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container-md p-2">
+    <!-- Form para encurtar link -->
+    <form id="short-link-form">
+      <div class="mb-5 d-flex flex-column flex-nowrap align-items-center">
+        <h2 class="fs-2">Encurte seu link aqui</h2>
+        <div class="typewriter align-self-center">
+          <span class="c-text-blue-2 fs-4 typewriter-content text-center">Gere um link curto;Crie QR code;Links
+            seguros</span>
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-group-text gap-2">
+          <input class="form-check-input mt-0" type="checkbox" id="short-link-qrcode"
+            aria-label="Checkbox for following text input">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAACxAAAAsQHGLUmNAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAghJREFUSInd1r1rVEEUBfDfrhvUP0CxWULACIIQg2ApiMbS0g+wUCxNFKyECFaCGAQ/gphAgqYSTaGFtkJABCutXDUimmItRLRSMZu1mHnZ2cfb1Q3YeGCYnTvnnjtzZ/bOgzLO4A0aaCZtGeM643zkpD6NqHUapQrGcLWDwDpUuwSoRk6KMgZxDc1SjDaIG7iTI//Cq9gXoQ/bY5/iOEbxmlZadnZZaa8YjpqNirAl0SAGOosNiUMDD3E3jo/ioPb0/MAVvMRKtJUz4SaGonFW+6FlbSkRW+rAmY3zQ5mtUrC9zPYcTzCAQ9rznP2+h/fYi92J7yrKcfuSPsMCzmGmYBEZZiJnIWdf1azggnDdajlSP/YLB9YJw0K++3P2GqbxochpTnF+6wmn3oEzlxcrOoPHGMH6xLaC+WQ8L9ykcmL7iUdFK/7/cETI8ZekfcZkwpnEC2xO+HUc/psAvRzyCCYSzuW8WEUouVWcEkpvhvvCVduFSyglc9+wBV+jf3a4z2LfF3f5kVY935HbwUQcH4jjT0mArdjXMQdBq4nlilbBytf1PXHlAwUCi9gU5zM0hFr0Lq+5lmIHTws4N+Nc12J3PUbemFvdgxzvIo5p/Vm/Y6pA798/OIvYhpO4nSOu9ck8Efu3hNe/KOdZu9VlpVN/8B0l3O8xocT2+tkyrvizpRbFS78BahnCb8CTSz4AAAAASUVORK5CYII=" alt="QR code input">
+        </div>
+        <input type="text" class="form-control" id="short-link-text" aria-label="Text input with checkbox"
+          placeholder="Cole seu link aqui">
+        <button class="btn c-btn-blue d-none d-md-block" id="">Encurtar</button>
+      </div>
+      <button class="btn c-btn-blue d-md-none d-block mt-2 ms-auto">Encurtar</button>
+    </form>
+    <!-- Resposta do form -->
+    <section class="d-flex flex-column align-items-center mt-4 p-4">
+      <div class="spinner-grow c-text-blue-3 d-none" role="status" id="loader">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div id="response-container" class="d-flex align-items-center flex-column d-none">
+        <img src="" id="qr-code" class="rounded-4">
+        <div class="mt-1">
+          <p readonly value="http://localhost:8080/asdas" class="w-100 d-inline" id="short-link-area"></p>
+          <button class="c-btn-outline-blue" id="copy-button"><i class="bi bi-clipboard"></i></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="error-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Ops!</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Ocorreu um erro com nosso servidor! Por favor, tem novamente mais tarde.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</html>
