@@ -13,11 +13,8 @@ type PostShortURLResponse = {
     id: string,
     originalURL: string,
     shortURL: string,
-    createdAt: string
-}
-
-type GetQRcodeResponse = {
-    base64Image: string
+    createdAt: string,
+    qrcode: string
 }
 
 form.addEventListener("submit", async (e) => {
@@ -56,20 +53,8 @@ form.addEventListener("submit", async (e) => {
         responseContainer.classList.remove("d-none");
 
         // Caso o usuário tenha pedido um qr code
-        if (QRCodeInput.checked) {
-            const URLParts = data.shortURL.split("/")
-            const URLId = URLParts[URLParts.length - 1]
-            const QRCodeData: GetQRcodeResponse | undefined = await fetch(`http://localhost:8080/qrcode/${URLId}`).then(response => response.json()).catch(error => console.log(error))
-
-            if (QRCodeData == undefined) {
-                // Remove o loader
-                loader.classList.add("d-none")
-                throw new Error("data not found")
-            }
-            console.log(QRCodeData.base64Image)
-            // Decodifica a base64 para exibir o QR code
-            QRCodeImage.src = `data:image/png;base64,${QRCodeData.base64Image}`
-        }
+        if (QRCodeInput.checked)
+            QRCodeImage.src = `data:image/png;base64,${data.qrcode}`
 
         // Adiciona a URL curta
         shortLinkArea.textContent = data.shortURL
