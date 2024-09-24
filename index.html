@@ -17,7 +17,7 @@
     <!-- Barra de navegação -->
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
-        <a class="navbar-brand fst-italic fs-2" href="index.html">Short Link</a>
+        <a class="navbar-brand fst-italic fs-2 ms-md-3" href="index.html">Short Link</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
           aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -48,14 +48,15 @@
       <div class="mb-5 d-flex flex-column flex-nowrap align-items-center">
         <h2 class="fs-2">Encurte seu link aqui</h2>
         <div class="typewriter align-self-center">
-          <span class="c-text-blue-2 fs-4 typewriter-content text-center">Gere um link curto;Crie QR code;Links seguros</span>
+          <span class="c-text-blue-2 fs-4 typewriter-content text-center"
+            typewriter-data="Gere um link curto;Crie QR code;Links seguros"></span>
         </div>
       </div>
       <div class="input-group">
         <div class="input-group-text gap-2">
           <input class="form-check-input mt-0" type="checkbox" id="short-link-qrcode"
             aria-label="Checkbox for following text input">
-          <img src="public/qr-code.png" alt="QR code input">
+            <i class="bi bi-qr-code-scan"></i>
         </div>
         <input type="text" class="form-control" id="short-link-text" aria-label="Text input with checkbox"
           placeholder="Cole seu link aqui">
@@ -68,10 +69,10 @@
       <div class="spinner-grow c-text-blue-3 d-none" role="status" id="loader">
         <span class="visually-hidden">Loading...</span>
       </div>
-      <div id="response-container" class="d-flex align-items-center flex-column d-none">
+      <div id="response-container" class="d-flex align-items-center flex-column d-none bg-white p-3 rounded-4 shadow-sm">
         <img src="" id="qr-code" class="rounded-4">
         <div class="mt-1">
-          <p readonly value="http://localhost:8080/asdas" class="w-100 d-inline" id="short-link-area"></p>
+          <p readonly value="" class="w-100 d-inline" id="short-link-area"></p>
           <button class="c-btn-outline-blue" id="copy-button"><i class="bi bi-clipboard"></i></button>
         </div>
       </div>
@@ -100,4 +101,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script type="module" src="./src/main.ts"></script>
+
 </html>

@@ -47,8 +47,8 @@ class Writer {
 }
 
 typewriter.forEach((element) => {
-    // Obtem as frases desejadas
-    const phrases = element.textContent?.split(";")
+    // Obtem as frases desejadas do atributo
+    const phrases = element.getAttribute("typewriter-data")?.split(";")
     // Remove as frases e deixa apenas um espaço para calcular da tag
     element.textContent = "."
     element.style.minHeight = element.clientHeight.toString() + "px"
